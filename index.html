@@ -3,53 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destino Quelccaya | Glaciar Tropical</title>
+    <title>Destino Quelcaya | Expediciones al Glaciar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1500'); /* Imagen de montaña */
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
-            background-attachment: fixed;
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-        }
-        .container { padding: 100px 20px; }
-        h1 { font-size: 3rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .btn-ws {
-            background: #25d366;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            background-position: center;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>🏔️ DESTINO QUELCCAYA</h1>
-        <p style="font-size: 1.2rem;">Explora el glaciar tropical más extenso del mundo.</p>
-        
-        <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; width: 200px;">
-                <h3>❄️ Hielo Real</h3>
-                <p>Caminatas guiadas sobre el glaciar.</p>
-            </div>
-            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; width: 200px;">
-                <h3>📸 Paisajes</h3>
-                <p>Las mejores vistas de la cordillera.</p>
+<body class="bg-slate-50 font-sans text-slate-900">
+
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tighter text-blue-900">DESTINO QUELCAYA</h1>
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="#inicio" class="hover:text-blue-600 transition">Inicio</a>
+                <a href="#expediciones" class="hover:text-blue-600 transition">Expediciones</a>
+                <a href="#contacto" class="hover:text-blue-600 transition text-blue-700 font-bold">Reserva Directa</a>
             </div>
         </div>
+    </nav>
 
-        <a href="https://wa.me/519XXXXXXXXX" class="btn-ws" target="_blank">
-            💬 Reservar por WhatsApp
-        </a>
-    </div>
+    <header id="inicio" class="hero-bg h-screen flex items-center justify-center text-center text-white px-4">
+        <div class="max-w-3xl">
+            <h2 class="text-5xl md:text-7xl font-extrabold mb-6 italic">Toca el cielo en el Quelcaya</h2>
+            <p class="text-lg md:text-xl mb-8 opacity-90">Explora el glaciar tropical más grande del mundo a 5,600 msnm. Una expedición que cambiará tu vida.</p>
+            <a href="https://wa.me/51900000000?text=Hola!%20Deseo%20información%20sobre%20la%20expedición%20al%20Quelcaya" 
+               class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-bold text-lg transition transform hover:scale-105 inline-flex items-center gap-2">
+                <i class="fab fa-whatsapp text-2xl"></i> Reservar por WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <section class="py-16 max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border-b-4 border-blue-500 text-center">
+            <i class="fas fa-mountain text-4xl text-blue-500 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">Altitud Extrema</h3>
+            <p class="text-slate-600">Llegamos hasta los 5,600 msnm con guías expertos en alta montaña.</p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-sm border-b-4 border-blue-500 text-center">
+            <i class="fas fa-snowflake text-4xl text-blue-500 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">Hielo Milenario</h3>
+            <p class="text-slate-600">Camina sobre el gigante blanco antes de que el cambio climático lo transforme.</p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-sm border-b-4 border-blue-500 text-center">
+            <i class="fas fa-users text-4xl text-blue-500 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">Comunidad</h3>
+            <p class="text-slate-600">Apoyamos directamente a los pobladores de Phinaya en cada expedición.</p>
+        </div>
+    </section>
+
+    <section id="expediciones" class="py-20 bg-slate-100 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 uppercase tracking-widest">Nuestras Expediciones</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white overflow-hidden rounded-3xl shadow-lg">
+                    <div class="p-8">
+                        <span class="text-blue-600 font-bold uppercase text-sm">Más Popular</span>
+                        <h3 class="text-2xl font-bold mt-2">Quelcaya Express (1 Día)</h3>
+                        <p class="mt-4 text-slate-600 italic">"Para quienes tienen poco tiempo pero mucha garra."</p>
+                        <ul class="mt-6 space-y-3 text-slate-700">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Transporte 4x4 privado</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Guía Certificado</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Desayuno y Almuerzo</li>
+                        </ul>
+                        <hr class="my-8">
+                        <div class="flex justify-between items-center">
+                            <span class="text-3xl font-bold text-slate-900">$150 USD</span>
+                            <a href="https://wa.me/51900000000?text=Me%20interesa%20el%20Tour%20Express" class="text-blue-600 font-bold hover:underline italic">Consultar fecha →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 text-white overflow-hidden rounded-3xl shadow-lg">
+                    <div class="p-8">
+                        <span class="text-blue-400 font-bold uppercase text-sm">Experiencia Total</span>
+                        <h3 class="text-2xl font-bold mt-2">Cumbre de Hielo (2 Días)</h3>
+                        <p class="mt-4 text-slate-300 italic">"Acampada bajo las estrellas más claras de los Andes."</p>
+                        <ul class="mt-6 space-y-3 text-slate-300">
+                            <li><i class="fas fa-check text-blue-400 mr-2"></i> Equipo de camping térmico</li>
+                            <li><i class="fas fa-check text-blue-400 mr-2"></i> Cocinero de montaña</li>
+                            <li><i class="fas fa-check text-blue-400 mr-2"></i> Ritual a la Pachamama</li>
+                        </ul>
+                        <hr class="my-8 border-slate-700">
+                        <div class="flex justify-between items-center">
+                            <span class="text-3xl font-bold">$280 USD</span>
+                            <a href="https://wa.me/51900000000?text=Deseo%20el%20Tour%20de%202%20días" class="text-blue-400 font-bold hover:underline italic">Consultar fecha →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto" class="py-12 bg-white text-center">
+        <p class="font-bold text-slate-500 uppercase tracking-widest mb-4">Destino Quelcaya</p>
+        <div class="flex justify-center space-x-6 mb-8 text-2xl text-slate-400">
+            <a href="#" class="hover:text-blue-600"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-blue-600"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/51900000000" class="hover:text-green-500"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="text-sm text-slate-400">&copy; 2024 Cusco, Perú. Operado por expertos locales.</p>
+    </footer>
+
 </body>
 </html>
