@@ -1,30 +1,31 @@
-
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Destino Quelccaya | Expediciones al Glaciar y Laguna Sibinacocha</title>
-    <!-- Tailwind CSS para el diseño profesional -->
+    <!-- Tailwind CSS para el diseño de alto nivel -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons para la iconografía técnica -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
         
         :root {
-            --glaciar-blue: #A5C9CA;
-            --space-dark: #0D1117;
+            --glaciar: #A5C9CA;
+            --noche: #0D1117;
+            --nieve: #F7F7F7;
         }
 
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             scroll-behavior: smooth;
-            background-color: var(--space-dark);
+            background-color: var(--noche);
             color: white;
         }
 
         .hero-stars {
-            background-image: linear-gradient(to bottom, rgba(13, 17, 23, 0.7), rgba(13, 17, 23, 0.95)), 
+            background-image: linear-gradient(to bottom, rgba(13, 17, 23, 0.6), rgba(13, 17, 23, 0.98)), 
                               url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2000&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -37,22 +38,33 @@
             letter-spacing: -0.05em; 
         }
 
-        .glass-card {
+        .glass {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .nav-scrolled {
             background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(15px);
-            padding: 1rem 0;
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .section-light {
-            background-color: #FFFFFF;
-            color: #0D1117;
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FFF 0%, #A5C9CA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
@@ -62,7 +74,7 @@
     <nav id="navbar" class="fixed w-full z-[100] transition-all duration-500 py-8">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <div class="flex items-center gap-3 group cursor-pointer">
-                <div class="w-10 h-10 bg-[#A5C9CA] flex items-center justify-center rounded-sm rotate-45 group-hover:rotate-0 transition-transform duration-500">
+                <div class="w-10 h-10 bg-[#A5C9CA] flex items-center justify-center rounded-sm rotate-45 group-hover:rotate-0 transition-transform duration-500 shadow-xl shadow-[#A5C9CA]/20">
                     <i data-lucide="navigation" class="text-[#0D1117] -rotate-45 group-hover:rotate-0 transition-transform duration-500 w-5 h-5"></i>
                 </div>
                 <div class="flex flex-col">
@@ -71,205 +83,355 @@
                 </div>
             </div>
             
-            <div class="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-[0.3em]">
+            <div class="hidden lg:flex gap-10 text-[10px] font-bold uppercase tracking-[0.3em]">
                 <a href="#inicio" class="hover:text-[#A5C9CA] transition-colors text-white/70">Inicio</a>
-                <a href="#experiencias" class="hover:text-[#A5C9CA] transition-colors text-white/70">Expediciones</a>
+                <a href="#expediciones" class="hover:text-[#A5C9CA] transition-colors text-white/70">Expediciones</a>
                 <a href="#seguridad" class="hover:text-[#A5C9CA] transition-colors text-white/70">Seguridad</a>
+                <a href="#checklist" class="hover:text-[#A5C9CA] transition-colors text-white/70">Equipo</a>
                 <a href="#nosotros" class="hover:text-[#A5C9CA] transition-colors text-white/70">Nosotros</a>
             </div>
 
-            <a href="https://wa.me/51935777322" target="_blank" class="bg-[#A5C9CA] text-[#0D1117] px-6 py-3 text-[10px] font-black uppercase tracking-widest hover:bg-white transition-all hidden md:block shadow-lg">
-                Reservar Ahora
+            <a href="https://wa.me/51935777322" target="_blank" class="bg-[#A5C9CA] text-[#0D1117] px-8 py-4 text-[10px] font-black uppercase tracking-widest hover:bg-white transition-all hidden md:block shadow-2xl">
+                RESERVAR CUPO
             </a>
         </div>
     </nav>
 
-    <!-- Pantalla de Inicio (Hero) -->
+    <!-- Hero Section -->
     <section id="inicio" class="relative min-h-screen flex items-center hero-stars pt-20 px-6">
         <div class="max-w-7xl mx-auto w-full relative z-10">
-            <div class="flex items-center gap-4 mb-6">
-                <div class="h-[1px] w-12 bg-[#A5C9CA]"></div>
-                <span class="text-[#A5C9CA] text-[10px] font-bold uppercase tracking-[0.6em] animate-pulse">Abierto recientemente: Solo 3 meses de operación</span>
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-[1px] w-16 bg-[#A5C9CA]"></div>
+                <span class="text-[#A5C9CA] text-[11px] font-bold uppercase tracking-[0.6em] animate-pulse">EXPEDICIONES VIRGENES • 2026</span>
             </div>
             
-            <h1 class="text-huge font-black mb-8 opacity-95 drop-shadow-2xl">QUELCCAYA</h1>
+            <h1 class="text-huge font-black mb-12 opacity-95 drop-shadow-2xl gradient-text">QUELCCAYA</h1>
             
-            <div class="grid lg:grid-cols-2 gap-12 items-end">
+            <div class="grid lg:grid-cols-2 gap-16 items-end">
                 <div class="max-w-xl">
-                    <h2 class="text-2xl md:text-4xl font-light mb-10 leading-tight">
-                        Navega la laguna <span class="text-[#A5C9CA] font-bold">Sibinacocha</span> y descubre el glaciar tropical más grande del mundo.
-                    </h2>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="https://wa.me/51935777322" target="_blank" class="bg-[#A5C9CA] text-[#0D1117] px-10 py-5 text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3 hover:bg-white transition-all shadow-2xl">
-                            Escribir por WhatsApp <i data-lucide="message-square" class="w-4 h-4"></i>
+                    <p class="text-2xl md:text-4xl font-light mb-12 leading-tight text-white/90">
+                        Navega en botes inflables por la laguna <span class="font-bold border-b-2 border-[#A5C9CA]">Sibinacocha</span> y camina sobre el gigante de hielo tropical.
+                    </p>
+                    <div class="flex flex-wrap gap-5">
+                        <a href="https://wa.me/51935777322" target="_blank" class="bg-[#A5C9CA] text-[#0D1117] px-12 py-6 text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-4 hover:bg-white transition-all shadow-2xl">
+                            HABLAR CON UN GUÍA <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
-                        <a href="#experiencias" class="border border-white/20 px-10 py-5 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white/5 transition-all">
-                            Ver Programas
+                        <a href="#expediciones" class="border border-white/20 px-12 py-6 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white/5 transition-all text-white backdrop-blur-sm">
+                            EXPLORAR RUTAS
                         </a>
                     </div>
                 </div>
-                <div class="hidden lg:flex flex-col items-end gap-2 border-r border-white/10 pr-8 mb-4 text-right">
-                    <span class="text-[#A5C9CA] text-6xl font-black">5.600</span>
-                    <span class="text-[10px] uppercase tracking-[0.5em] text-white/40 font-bold text-right">Metros de Altura</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seguridad e Inclusiones -->
-    <section id="seguridad" class="py-20 bg-white text-[#0D1117]">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="flex gap-5 items-center p-6 bg-[#F7F7F7] rounded-sm">
-                    <div class="p-3 bg-[#A5C9CA]/20 rounded-sm">
-                        <i data-lucide="wind" class="text-[#A5C9CA] w-8 h-8"></i>
+                <div class="hidden lg:flex flex-col items-end border-r border-white/10 pr-12 pb-4">
+                    <div class="text-right mb-6">
+                        <span class="text-[#A5C9CA] text-7xl font-black block">5.600</span>
+                        <span class="text-[10px] uppercase tracking-[0.5em] text-white/40 font-bold">M.S.N.M. Altura</span>
                     </div>
-                    <div>
-                        <h4 class="font-black text-[10px] uppercase tracking-widest mb-1">Oxígeno Incluido</h4>
-                        <p class="text-[11px] text-gray-500">Galones de oxígeno disponibles en todas nuestras rutas sin costo adicional.</p>
-                    </div>
-                </div>
-                <div class="flex gap-5 items-center p-6 bg-[#F7F7F7] rounded-sm">
-                    <div class="p-3 bg-[#A5C9CA]/20 rounded-sm">
-                        <i data-lucide="satellite" class="text-[#A5C9CA] w-8 h-8"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-black text-[10px] uppercase tracking-widest mb-1">Comunicación Satelital</h4>
-                        <p class="text-[11px] text-gray-500">Conexión de emergencia 24/7 para tu seguridad en zonas remotas.</p>
-                    </div>
-                </div>
-                <div class="flex gap-5 items-center p-6 bg-[#F7F7F7] rounded-sm">
-                    <div class="p-3 bg-[#A5C9CA]/20 rounded-sm">
-                        <i data-lucide="shield-check" class="text-[#A5C9CA] w-8 h-8"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-black text-[10px] uppercase tracking-widest mb-1">Guías Locales</h4>
-                        <p class="text-[11px] text-gray-500">Expertos locales capacitados con botiquín de primeros auxilios completo.</p>
+                    <div class="text-right">
+                        <span class="text-[#A5C9CA] text-4xl font-black block">3 MESES</span>
+                        <span class="text-[10px] uppercase tracking-[0.5em] text-white/40 font-bold">Desde la Apertura</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Programas de Expedición -->
-    <section id="experiencias" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto text-center md:text-left">
-            <div class="mb-20">
-                <span class="text-[#A5C9CA] text-[10px] font-bold uppercase tracking-[0.5em] mb-4 block">Experiencias Destino</span>
-                <h2 class="text-5xl md:text-7xl font-black tracking-tighter leading-none italic uppercase">Rutas al Hielo</h2>
+    <!-- Métricas Técnicas -->
+    <section class="py-24 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-12 text-center md:text-left">
+            <div class="reveal">
+                <i data-lucide="thermometer-snowflake" class="text-[#A5C9CA] w-8 h-8 mb-4 mx-auto md:mx-0"></i>
+                <h4 class="text-4xl font-black mb-2">-22°C</h4>
+                <p class="text-[10px] uppercase tracking-widest text-white/40">Resistencia Térmica</p>
+            </div>
+            <div class="reveal">
+                <i data-lucide="map" class="text-[#A5C9CA] w-8 h-8 mb-4 mx-auto md:mx-0"></i>
+                <h4 class="text-4xl font-black mb-2">44km²</h4>
+                <p class="text-[10px] uppercase tracking-widest text-white/40">Área Glaciar</p>
+            </div>
+            <div class="reveal">
+                <i data-lucide="stars" class="text-[#A5C9CA] w-8 h-8 mb-4 mx-auto md:mx-0"></i>
+                <h4 class="text-4xl font-black mb-2">Bortle 1</h4>
+                <p class="text-[10px] uppercase tracking-widest text-white/40">Calidad de Cielo</p>
+            </div>
+            <div class="reveal">
+                <i data-lucide="shield-check" class="text-[#A5C9CA] w-8 h-8 mb-4 mx-auto md:mx-0"></i>
+                <h4 class="text-4xl font-black mb-2">100%</h4>
+                <p class="text-[10px] uppercase tracking-widest text-white/40">Seguridad Satelital</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expediciones Reales -->
+    <section id="expediciones" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-12">
+                <div class="max-w-2xl reveal">
+                    <span class="text-[#A5C9CA] text-[10px] font-bold uppercase tracking-[0.5em] mb-4 block">PROGRAMAS OFICIALES 2026</span>
+                    <h2 class="text-5xl md:text-7xl font-black tracking-tighter leading-none uppercase">Rutas al corazón <br/> del hielo.</h2>
+                </div>
+                <div class="max-w-xs text-white/40 text-sm font-light leading-relaxed reveal">
+                    Operamos bajo el modelo de "Agencia Boutique": grupos reducidos, guías locales y atención personalizada.
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto text-left">
+            <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Tour 1 Día -->
-                <div class="group glass-card overflow-hidden transition-all duration-500 hover:translate-y-[-10px] rounded-sm">
-                    <div class="relative aspect-video overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1200" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Quelccaya Glaciar">
-                        <div class="absolute top-4 left-4 bg-[#A5C9CA] text-[#0D1117] px-3 py-1 text-[9px] font-black uppercase tracking-widest">Full Day</div>
+                <div class="group glass rounded-sm overflow-hidden transition-all duration-500 hover:border-[#A5C9CA]/40 reveal">
+                    <div class="relative aspect-[16/9] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1200" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100" alt="Quelccaya Expedition">
+                        <div class="absolute top-6 left-6 bg-[#A5C9CA] text-[#0D1117] px-4 py-2 text-[10px] font-black uppercase tracking-widest">Full Day</div>
                     </div>
-                    <div class="p-10">
-                        <h3 class="text-3xl font-black mb-6 uppercase tracking-tight">Sibinacocha & Quelccaya</h3>
-                        <p class="text-white/60 font-light mb-8 leading-relaxed">
-                            Navega la laguna Sibinacocha en botes inflables y llega al frente del glaciar. Una experiencia intensa y pura.
-                        </p>
-                        <div class="flex flex-col gap-4 mb-10 text-[10px] font-bold text-white/80 uppercase tracking-widest">
-                            <div class="flex items-center gap-3 text-[#A5C9CA]"><i data-lucide="ship" class="w-4 h-4"></i> Botes inflables en la laguna</div>
-                            <div class="flex items-center gap-3"><i data-lucide="coffee" class="w-4 h-4"></i> Desayuno y Almuerzo Incluido</div>
+                    <div class="p-12">
+                        <div class="flex justify-between items-center mb-8">
+                            <h3 class="text-3xl font-black uppercase tracking-tighter">Mística Sibinacocha</h3>
+                            <div class="flex gap-2">
+                                <i data-lucide="ship" class="w-5 h-5 text-[#A5C9CA]"></i>
+                                <i data-lucide="wind" class="w-5 h-5 text-[#A5C9CA]"></i>
+                            </div>
                         </div>
-                        <a href="https://wa.me/51935777322" target="_blank" class="block w-full text-center py-5 bg-white text-[#0D1117] text-[10px] font-black uppercase tracking-[0.3em] hover:bg-[#A5C9CA] transition-colors">Consultar Disponibilidad</a>
+                        <p class="text-white/60 font-light mb-10 leading-relaxed italic text-lg">
+                            "Navegación en botes inflables frente a las paredes de cristal y caminata al borde del glaciar tropical más grande de la Tierra."
+                        </p>
+                        <div class="grid grid-cols-2 gap-6 mb-12 border-y border-white/5 py-8">
+                            <div>
+                                <span class="text-[9px] uppercase tracking-widest text-white/30 block mb-1">Dificultad</span>
+                                <span class="text-xs font-bold uppercase tracking-widest text-[#A5C9CA]">Media</span>
+                            </div>
+                            <div>
+                                <span class="text-[9px] uppercase tracking-widest text-white/30 block mb-1">Incluye</span>
+                                <span class="text-xs font-bold uppercase tracking-widest">D, A, Oxígeno</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/51935777322" target="_blank" class="block w-full text-center py-6 bg-white text-[#0D1117] text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#A5C9CA] transition-all">CONSULTAR DISPONIBILIDAD</a>
                     </div>
                 </div>
 
                 <!-- Tour 2 Días -->
-                <div class="group glass-card overflow-hidden transition-all duration-500 hover:translate-y-[-10px] rounded-sm">
-                    <div class="relative aspect-video overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Noche en Andes">
-                        <div class="absolute top-4 left-4 bg-[#A5C9CA] text-[#0D1117] px-3 py-1 text-[9px] font-black uppercase tracking-widest">2 Días / 1 Noche</div>
+                <div class="group glass rounded-sm overflow-hidden transition-all duration-500 hover:border-[#A5C9CA]/40 reveal">
+                    <div class="relative aspect-[16/9] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100" alt="Starry Sky Quelccaya">
+                        <div class="absolute top-6 left-6 bg-[#A5C9CA] text-[#0D1117] px-4 py-2 text-[10px] font-black uppercase tracking-widest">2 Días / 1 Noche</div>
                     </div>
-                    <div class="p-10">
-                        <h3 class="text-3xl font-black mb-6 uppercase tracking-tight">Cielo Estrellado & Fauna</h3>
-                        <p class="text-white/60 font-light mb-8 leading-relaxed">
-                            Pernocte bajo el firmamento. Observación de zorros, vizcachas, wallatas y vicuñas desde miradores secretos.
-                        </p>
-                        <div class="flex flex-col gap-4 mb-10 text-[10px] font-bold text-white/80 uppercase tracking-widest">
-                            <div class="flex items-center gap-3 text-[#A5C9CA]"><i data-lucide="stars" class="w-4 h-4"></i> Stargazing & Mirador</div>
-                            <div class="flex items-center gap-3 text-[#A5C9CA]"><i data-lucide="camera" class="w-4 h-4"></i> Fotos con Alpacas en su hábitat</div>
-                            <div class="flex items-center gap-3"><i data-lucide="coffee" class="w-4 h-4"></i> B, L, Cena Incluidos</div>
+                    <div class="p-12">
+                        <div class="flex justify-between items-center mb-8">
+                            <h3 class="text-3xl font-black uppercase tracking-tighter">Sinfonía del Hielo</h3>
+                            <div class="flex gap-2">
+                                <i data-lucide="stars" class="w-5 h-5 text-[#A5C9CA]"></i>
+                                <i data-lucide="camera" class="w-5 h-5 text-[#A5C9CA]"></i>
+                            </div>
                         </div>
-                        <a href="https://wa.me/51935777322" target="_blank" class="block w-full text-center py-5 bg-[#A5C9CA] text-[#0D1117] text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white transition-colors">Reservar Expedición</a>
+                        <p class="text-white/60 font-light mb-10 leading-relaxed italic text-lg">
+                            "Pernocte bajo el firmamento andino. Avistamiento de zorros, vicuñas y vizcachas. Fotos con alpacas en su hábitat natural."
+                        </p>
+                        <div class="grid grid-cols-2 gap-6 mb-12 border-y border-white/5 py-8">
+                            <div>
+                                <span class="text-[9px] uppercase tracking-widest text-white/30 block mb-1">Dificultad</span>
+                                <span class="text-xs font-bold uppercase tracking-widest text-[#A5C9CA]">Técnica</span>
+                            </div>
+                            <div>
+                                <span class="text-[9px] uppercase tracking-widest text-white/30 block mb-1">Incluye</span>
+                                <span class="text-xs font-bold uppercase tracking-widest">Pensión Completa</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/51935777322" target="_blank" class="block w-full text-center py-6 bg-[#A5C9CA] text-[#0D1117] text-[11px] font-black uppercase tracking-[0.3em] hover:bg-white transition-all">RESERVAR EXPERIENCIA</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Nosotros / Historia -->
-    <section id="nosotros" class="py-32 bg-white text-[#0D1117] px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-24 items-center">
-            <div class="relative group">
-                <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?q=80&w=800" class="rounded-sm shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-1000" alt="Aventura Andes">
-                <div class="absolute -bottom-10 -right-10 bg-[#0D1117] text-white p-12 hidden md:block shadow-2xl rounded-sm">
-                    <p class="text-5xl font-black text-[#A5C9CA] mb-2 uppercase tracking-tighter">Nuevos</p>
-                    <p class="text-[10px] uppercase tracking-widest font-bold">Inaugurados hace 3 meses</p>
+    <!-- Seguridad y Equipo (Información Real) -->
+    <section id="seguridad" class="py-32 bg-white text-[#0D1117]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-24 items-center">
+                <div class="reveal">
+                    <span class="text-[#A5C9CA] text-[11px] font-black uppercase tracking-[0.5em] mb-6 block text-center lg:text-left">ESTÁNDAR DE MONTAÑA</span>
+                    <h2 class="text-5xl md:text-7xl font-black tracking-tighter leading-none mb-12 text-center lg:text-left">Tu seguridad es nuestra <br/> única ley.</h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-6 items-start">
+                            <div class="w-14 h-14 bg-[#A5C9CA]/20 flex items-center justify-center rounded-sm flex-shrink-0 text-[#A5C9CA]">
+                                <i data-lucide="wind"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-xs uppercase tracking-widest mb-2">Oxígeno Médico Permanente</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Galones de oxígeno disponibles en cada paso de la ruta. Incluido en el precio, sin cargos extra por uso.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 items-start">
+                            <div class="w-14 h-14 bg-[#A5C9CA]/20 flex items-center justify-center rounded-sm flex-shrink-0 text-[#A5C9CA]">
+                                <i data-lucide="satellite"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-xs uppercase tracking-widest mb-2">Comunicación Satelital Garmin</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Mantenemos enlace constante con Cusco en zonas donde no existe señal de celular. Seguridad 24/7.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 items-start">
+                            <div class="w-14 h-14 bg-[#A5C9CA]/20 flex items-center justify-center rounded-sm flex-shrink-0 text-[#A5C9CA]">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-xs uppercase tracking-widest mb-2">Guías Locales Certificados</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Expertos nacidos en la zona, altamente capacitados para gestionar cualquier situación técnica o médica.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group reveal">
+                    <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?q=80&w=1000" class="rounded-sm shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-1000">
+                    <div class="absolute -bottom-10 -left-10 bg-[#0D1117] text-white p-12 hidden xl:block shadow-2xl">
+                        <p class="text-[10px] uppercase tracking-[0.5em] font-bold text-[#A5C9CA] mb-2">Estado del Glaciar</p>
+                        <p class="text-2xl font-black italic">"Apertura Histórica: Solo 3 meses de acceso turístico controlado."</p>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Checklist de Equipo -->
+    <section id="checklist" class="py-32 px-6 bg-[#0D1117]">
+        <div class="max-w-5xl mx-auto reveal">
+            <div class="text-center mb-20">
+                <span class="text-[#A5C9CA] text-[10px] font-bold uppercase tracking-[0.5em] mb-4 block">PREPÁRATE PARA EL HIELO</span>
+                <h2 class="text-4xl font-black tracking-tight uppercase">Lo que debes traer</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-sm text-center">
+                    <i data-lucide="shirt" class="text-[#A5C9CA] w-10 h-10 mb-6 mx-auto"></i>
+                    <h5 class="font-black text-[11px] uppercase tracking-widest mb-4">Vestimenta</h5>
+                    <ul class="text-xs text-white/40 space-y-3 font-medium">
+                        <li>Sistema de 3 capas</li>
+                        <li>Chaqueta impermeable</li>
+                        <li>Guantes térmicos</li>
+                        <li>Medias de lana</li>
+                    </ul>
+                </div>
+                <div class="glass p-8 rounded-sm text-center">
+                    <i data-lucide="footprints" class="text-[#A5C9CA] w-10 h-10 mb-6 mx-auto"></i>
+                    <h5 class="font-black text-[11px] uppercase tracking-widest mb-4">Calzado</h5>
+                    <ul class="text-xs text-white/40 space-y-3 font-medium">
+                        <li>Botas de trekking (High)</li>
+                        <li>Calzado de descanso</li>
+                        <li>Crampones (Si aplica)</li>
+                    </ul>
+                </div>
+                <div class="glass p-8 rounded-sm text-center">
+                    <i data-lucide="sun" class="text-[#A5C9CA] w-10 h-10 mb-6 mx-auto"></i>
+                    <h5 class="font-black text-[11px] uppercase tracking-widest mb-4">Personal</h5>
+                    <ul class="text-xs text-white/40 space-y-3 font-medium">
+                        <li>Bloqueador SPF 50+</li>
+                        <li>Gafas categoría 4</li>
+                        <li>Cámara / Baterías</li>
+                        <li>Mochila 35L</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preguntas Frecuentes (FAQ) -->
+    <section id="faq" class="py-32 bg-white text-[#0D1117] px-6">
+        <div class="max-w-4xl mx-auto reveal">
+            <h2 class="text-5xl font-black tracking-tighter mb-16 text-center italic">Dudas del Explorador.</h2>
+            <div class="space-y-6">
+                <div class="border-b border-gray-100 pb-8">
+                    <h4 class="font-extrabold text-xl mb-3 uppercase tracking-tight">¿Cuándo es la temporada ideal?</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">De **abril a noviembre**. Son los meses de la estación seca en los Andes, lo que permite cielos totalmente despejados y rutas de acceso seguras al glaciar.</p>
+                </div>
+                <div class="border-b border-gray-100 pb-8">
+                    <h4 class="font-extrabold text-xl mb-3 uppercase tracking-tight">¿Qué fauna podré ver?</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">En nuestras expediciones de 2 días avistamos **zorros andinos, vizcachas, wallatas (gansos andinos) y vicuñas**. Además, tendrás sesiones de fotos con alpacas en su propio hábitat.</p>
+                </div>
+                <div class="border-b border-gray-100 pb-8">
+                    <h4 class="font-extrabold text-xl mb-3 uppercase tracking-tight">¿Incluyen la alimentación?</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Sí. El Full Day incluye desayuno y almuerzo. El programa de 2 días incluye pensión completa (Desayuno, Almuerzo y Cena) con menús de alta energía preparados por cocineros de montaña.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historia y Nosotros -->
+    <section id="nosotros" class="py-40 bg-[#0D1117] text-white px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-24 items-center reveal">
             <div>
-                <span class="text-[#A5C9CA] font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">Nuestra Esencia</span>
-                <h2 class="text-4xl md:text-6xl font-black tracking-tighter leading-none mb-10 italic">Somos el Hielo Local.</h2>
-                <p class="text-lg text-gray-600 font-light leading-relaxed mb-8">
-                    Tras la apertura oficial del Glaciar Quelccaya hace apenas 3 meses, abrimos nuestras puertas para mostrarte el destino más virgen de los Andes.
+                <span class="text-[#A5C9CA] font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">NUESTRA HISTORIA</span>
+                <h2 class="text-5xl md:text-7xl font-black tracking-tighter leading-none mb-10 uppercase">Somos el origen.</h2>
+                <p class="text-xl text-white/60 font-light leading-relaxed mb-8">
+                    El Glaciar Quelccaya es un santuario que el mundo apenas comienza a descubrir. Abrimos nuestras puertas hace solo 3 meses con una misión clara: ofrecer exclusividad total sin sacrificar la seguridad.
                 </p>
-                <p class="text-gray-500 mb-12">
-                    Nuestros guías son locales altamente capacitados. Te llevamos a conocer alpacas, zorros y vicuñas con la calma y el respeto que solo la experiencia local ofrece. Nuestra operación es 100% online para darte el mejor trato directo.
+                <p class="text-white/40 mb-12">
+                    Nuestros guías no solo conocen el camino, ellos nacieron en estas montañas. Somos una agencia de operación online, lo que nos permite invertir más en equipo satelital y botes de alta gama para que tu experiencia en Sibinacocha sea inigualable.
                 </p>
-                <div class="flex gap-10 py-8 border-t border-gray-100">
+                <div class="flex gap-12 py-10 border-t border-white/10">
                     <div>
-                        <h5 class="font-black text-[10px] uppercase mb-1">Temporada</h5>
-                        <p class="text-sm font-bold text-[#A5C9CA]">ABRIL - NOVIEMBRE</p>
+                        <p class="text-4xl font-black text-[#A5C9CA]">0%</p>
+                        <p class="text-[9px] uppercase tracking-widest font-bold text-white/40">Intermediarios</p>
                     </div>
                     <div>
-                        <h5 class="font-black text-[10px] uppercase mb-1">Operación</h5>
-                        <p class="text-sm font-bold text-gray-400">100% ONLINE</p>
+                        <p class="text-4xl font-black text-[#A5C9CA]">5k+</p>
+                        <p class="text-[9px] uppercase tracking-widest font-bold text-white/40">Metros de Altura</p>
                     </div>
+                </div>
+            </div>
+            <div class="relative aspect-square overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=1000" class="w-full h-full object-cover grayscale opacity-60">
+                <div class="absolute inset-0 flex items-center justify-center p-20 border border-white/10 m-8">
+                    <p class="text-center font-black text-xl uppercase tracking-[0.3em] leading-relaxed">"Trazando el camino donde otros solo ven nieve."</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pie de Página -->
+    <!-- Footer -->
     <footer class="bg-[#0D1117] py-24 px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-            <div class="flex flex-col items-center md:items-start text-center md:text-left">
-                <div class="flex items-center gap-3 mb-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16 mb-20 text-center md:text-left">
+            <div>
+                <div class="flex items-center gap-3 mb-8 justify-center md:justify-start">
                     <div class="w-10 h-10 bg-[#A5C9CA] flex items-center justify-center rounded-sm rotate-45">
-                        <i data-lucide="navigation" class="text-[#0D1117] -rotate-45 w-4 h-4"></i>
+                        <i data-lucide="navigation" class="text-[#0D1117] -rotate-45 w-5 h-5"></i>
                     </div>
                     <span class="font-extrabold tracking-tighter text-2xl uppercase">DESTINO QUELCCAYA</span>
                 </div>
-                <p class="text-white/30 text-[10px] uppercase tracking-[0.4em]">Donde el cielo toca el hielo.</p>
+                <p class="text-white/30 text-xs font-light tracking-wide leading-relaxed">
+                    Especialistas en expediciones técnicas, astrofotografía y navegación glaciar en la Cordillera Vilcanota.
+                </p>
             </div>
-            
-            <div class="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-white/50">
-                <a href="https://wa.me/51935777322" target="_blank" class="hover:text-white transition-colors">WhatsApp</a>
-                <a href="#" class="hover:text-white transition-colors">Instagram</a>
-                <a href="#" class="hover:text-white transition-colors">Facebook</a>
+            <div>
+                <h5 class="text-[#A5C9CA] text-[10px] font-black uppercase tracking-widest mb-8">Explora</h5>
+                <ul class="space-y-4 text-xs font-bold uppercase tracking-widest text-white/60">
+                    <li><a href="#expediciones" class="hover:text-white">Programas</a></li>
+                    <li><a href="#seguridad" class="hover:text-white">Seguridad Satelital</a></li>
+                    <li><a href="#nosotros" class="hover:text-white">Sobre Nosotros</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-[#A5C9CA] text-[10px] font-black uppercase tracking-widest mb-8">Contacto Oficial</h5>
+                <p class="text-white/60 text-xs font-bold uppercase tracking-widest mb-4">+51 935 777 322</p>
+                <p class="text-white/60 text-xs font-bold mb-8">info@destinoquelccaya.com</p>
+                <div class="flex gap-6 justify-center md:justify-start">
+                    <a href="https://wa.me/51935777322" class="text-white/40 hover:text-[#A5C9CA] transition-colors"><i data-lucide="message-circle"></i></a>
+                    <a href="#" class="text-white/40 hover:text-[#A5C9CA] transition-colors"><i data-lucide="instagram"></i></a>
+                    <a href="#" class="text-white/40 hover:text-[#A5C9CA] transition-colors"><i data-lucide="vimeo"></i></a>
+                </div>
             </div>
         </div>
-        <div class="mt-20 pt-10 border-t border-white/5 text-center">
-            <p class="text-[9px] uppercase tracking-[0.6em] text-white/10">© 2026 Destino Quelccaya - Cusco, Perú</p>
+        <div class="pt-10 border-t border-white/5 text-center">
+            <p class="text-[9px] uppercase tracking-[0.6em] text-white/10">© 2026 Destino Quelccaya — Cusco, Perú — Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <!-- Botón WhatsApp Flotante -->
     <a href="https://wa.me/51935777322" target="_blank" class="fixed bottom-8 right-8 z-[200] bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all group flex items-center">
         <i data-lucide="message-circle" class="w-8 h-8"></i>
-        <span class="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-3 transition-all duration-500 whitespace-nowrap font-extrabold text-[10px] uppercase tracking-widest">Chat Directo</span>
+        <span class="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-3 transition-all duration-500 whitespace-nowrap font-extrabold text-[10px] uppercase tracking-widest">Consultar Fecha</span>
     </a>
 
+    <!-- Scripts -->
     <script>
-        // Inicializar iconos
+        // Inicializar Iconos
         lucide.createIcons();
 
-        // Navbar Scroll Effect
+        // Efecto Navbar Scroll
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 80) {
@@ -278,6 +440,19 @@
                 nav.classList.remove('nav-scrolled');
             }
         });
+
+        // Animación Reveal on Scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
+
